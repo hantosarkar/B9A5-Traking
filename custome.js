@@ -22,9 +22,14 @@ for (let card of Cards) {
             } else {
                 // Validation for one persone select 4 Seat ;
                 if (count < 4) {
-                    discountBtn.disabled = false;
+                    if(count==3){
+                        discountBtn.disabled = false;
+                    }
                     // Background Change Funtion
                     BackgroundChange(card);
+                     let totalSet=document.getElementById('totalSetCount');
+                    let totalSetValue = parseInt(document.getElementById('totalSetCount').innerHTML);
+                    totalSet.innerHTML = totalSetValue - counter ;
                     setCheckArray.push(valueOfSeat);
                     let setCounter = document.getElementById('seat-Count');
                     let setCounterValue = parseInt(setCounter.innerHTML);
@@ -47,10 +52,9 @@ for (let card of Cards) {
     });
 }
 
-let CopneCount = 0;
+
 function applyCoupe() {
     // Validation For Use Coupne only one Time
-    if (CopneCount < 1) {
         let disInput = document.getElementById('coupne-input');
         let disInputValue = disInput.value;
         if (disInputValue === "NEW15" || disInputValue === "NEW20") {
@@ -63,6 +67,7 @@ function applyCoupe() {
                 // Table Create Function1
                 createTable(discountAmount);
                 document.getElementById('coupne-input').value = "";
+                discountBtn.disabled=true;
             } else {
                 let discountAmount = (Amount * 20) / 100;
                 let netAmount = Amount - discountAmount;
@@ -70,18 +75,13 @@ function applyCoupe() {
                 // Table Create Function2
                 createTable2(discountAmount);
                 document.getElementById('coupne-input').value = "";
+                discountBtn.disabled=true;
             }
         } else {
             alert('Please Enter A Valid Coupne');
             document.getElementById('coupne-input').value = "";
         }
-
-    } else {
-
-        alert("You Used One Coupne");
-        document.getElementById('coupne-input').value = "";
-    }
-
+ 
     CopneCount++;      // Validation For Use Coupne only one Time Counter .
     seatAccessCount++; // Validation For apply cupne but not purchess  Counter .
 }

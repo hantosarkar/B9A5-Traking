@@ -1,6 +1,14 @@
+
 body{
 
     width: 1440px;
+    margin: auto;
+
+}
+
+.Mother-div{
+
+    width: 1140px;
     margin: auto;
 
 }
